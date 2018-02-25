@@ -2,7 +2,10 @@ package ballPath;
 
 import processing.core.PApplet;
 
-public class Runner extends PApplet{
+public class Runner extends PApplet
+{
+	int stage = 0;
+	
 	public static void main(String[] args)
 	{
 		PApplet.main("ballPath.Runner");
@@ -19,6 +22,11 @@ public class Runner extends PApplet{
 	}
 	
 	public void draw()
+	{
+		
+	}
+	
+	public void mousePressed()
 	{
 		
 	}
