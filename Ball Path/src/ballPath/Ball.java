@@ -1,6 +1,5 @@
 package ballPath;
 
-//import java.io.*;
 import java.util.*;
 import processing.core.PApplet;
 
@@ -10,6 +9,8 @@ public class Ball
 	private PApplet parent;
 	private double posX;
 	private double posY;
+	private double changeX;
+	private double changeY;
 	
 	public Ball(PApplet p, int startX, int startY)
 	{
@@ -19,21 +20,30 @@ public class Ball
 		instructions = new ArrayList<Integer>();
 	}
 	
+	public void setSpeed(double speedX, double speedY)
+	{
+		changeX = speedX;
+		changeY = speedY;
+	}
+	
 	public void moveBall()
 	{
-		for(int i = 0; i < instructions.size(); i++)
-		{
-			if(instructions.get(i) == 0)
-				posY -= 8;
-			else if(instructions.get(i) == 1)
-				posX += 8;
-			else if(instructions.get(i) == 2)
-				posY += 8;
-			else if(instructions.get(i) == 3)
-				posX -= 8;
-			parent.background(0);
-			drawBall();
-		}
+//		for(int i = 0; i < instructions.size(); i++)
+//		{
+//			if(instructions.get(i) == 0)
+//				posY -= 8;
+//			else if(instructions.get(i) == 1)
+//				posX += 8;
+//			else if(instructions.get(i) == 2)
+//				posY += 8;
+//			else if(instructions.get(i) == 3)
+//				posX -= 8;
+//			parent.background(0);
+//			drawBall();
+//		}
+		
+		posX += changeX;
+		posY += changeY;
 	}
 	
 	public void changeVelocity(int newXMove, int newYMove)
@@ -82,5 +92,25 @@ public class Ball
 	public ArrayList<Integer> getInstruct()
 	{
 		return instructions;
+	}
+	
+	public double getX()
+	{
+		return posX;
+	}
+	
+	public double getY()
+	{
+		return posY;
+	}
+	
+	public double sX()
+	{
+		return changeX;
+	}
+	
+	public double sY()
+	{
+		return changeY;
 	}
 }
