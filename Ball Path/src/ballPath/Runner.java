@@ -145,13 +145,21 @@ public class Runner extends PApplet
 		
 		b.drawBall();
 		b.moveBall();
+		
 		if(get((int)b.getX() + 27, (int)b.getY()) == -13487566 || get((int)b.getX() - 27, (int)b.getY()) == -13487566)
 			b.setSpeed(b.sX() * -1, b.sY());
+		
 		if(get((int)b.getX(), (int)b.getY() + 27) == -13487566 || get((int)b.getX(), (int)b.getY() -27) == -13487566)
 			b.setSpeed(b.sX(), b.sY() * -1);
+		
 		if(get((int)b.getX(), (int)b.getY() + 27) == -16711936 || get((int)b.getX(), (int)b.getY() -27) == -16711936 
 				|| get((int)b.getX() + 27, (int)b.getY()) == -16711936 || get((int)b.getX() - 27, (int)b.getY()) == -16711936)
+		{
 			b.setSpeed(0, 0);
+			textSize(200);
+			fill(0, 0, 255);
+			text("you wON.!", 50, 500);
+		}
 	}
 	
 	public void mouseClicked()
