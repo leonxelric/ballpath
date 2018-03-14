@@ -51,6 +51,9 @@ public class Runner extends PApplet
 			fill(0, 0, 255);
 			endFlag = true;
 		}
+		
+		if(stage == 2 && key == 's')
+			b.setSpeed(10, 10);
 	}
 	
 	public void mousePressed()
@@ -78,7 +81,7 @@ public class Runner extends PApplet
 			}
 		}
 		
-		b.setSpeed(random(-5, 6), random(-5, 6));
+		b.setSpeed(random(-15, 16), random(-15, 16));
 	}
 	
 	public void drawStage0()
@@ -164,7 +167,7 @@ public class Runner extends PApplet
 	
 	public void mouseClicked()
 	{
-		System.out.println(get(mouseX, mouseY));
+		
 	}
 }
 
