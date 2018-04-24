@@ -1,7 +1,6 @@
 package ballPath;
 
 import processing.core.PApplet;
-import java.util.*;
 
 public class Runner extends PApplet
 {
@@ -9,6 +8,7 @@ public class Runner extends PApplet
 	int startingX;
 	int startingY;
 	Ball b = new Ball(this, 0, 0);
+	Square[] squares = new Square[200];
 	
 	public static void main(String[] args)
 	{
@@ -102,28 +102,37 @@ public class Runner extends PApplet
 	boolean stage1Flag = true;
 	boolean startFlag = true;
 	boolean endFlag = false;
-	
+	int index = 0;
 	
 	public void drawStage1()
 	{
-		if(stage1Flag)
+		for(int x = 0; x < width; x += 90)
 		{
-			fill(50);
-			rect(-20, -20, width + 20, height + 20);
-			stage1Flag = false;
+			for(int y = 0; y < height; y += 90)
+			{
+				//Square(x, y, false);
+				
+			}
 		}
 		
-		stroke(255);
-		
-		for(int i = 90; i < width; i += 90)
-		{
-			line(i, 0, i, height);
-		}
-		
-		for(int i = 90; i < height; i += 90)
-		{
-			line(0, i, width, i);
-		}
+//		if(stage1Flag)
+//		{
+//			fill(50);
+//			rect(-20, -20, width + 20, height + 20);
+//			stage1Flag = false;
+//		}
+//		
+//		stroke(255);
+//		
+//		for(int i = 90; i < width; i += 90)
+//		{
+//			line(i, 0, i, height);
+//		}
+//		
+//		for(int i = 90; i < height; i += 90)
+//		{
+//			line(0, i, width, i);
+//		}
 	}
 	
 	public void drawStage2()
