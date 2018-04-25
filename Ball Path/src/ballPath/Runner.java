@@ -48,12 +48,16 @@ public class Runner extends PApplet
 		
 		if(stage == 1 && key == 'e')
 		{
-			fill(0, 0, 255);
 			endFlag = true;
 		}
 		
 		if(stage == 2 && key == 's')
 			b.setSpeed(10, 10);
+	}
+	
+	public int getIndexInSquares()
+	{
+		return (((int) mouseY/90) * 20) + mouseX/90;
 	}
 	
 	public void mousePressed()
@@ -62,16 +66,14 @@ public class Runner extends PApplet
 		{
 			if(startFlag)
 			{
-				fill(255, 0, 0);
+				squares[getIndexInSquares()].makeStart();
 				startingX = (int)(mouseX/90*90) + 45;
 				startingY = (int)(mouseY/90*90) + 45;
 				b.setPos(startingX, startingY);
 				startFlag = false;
 			}
 			else if(! endFlag)
-				fill(255);
-			
-			rect(mouseX/90*90, mouseY/90*90, 90, 90);
+				squares[getIndexInSquares()].enlighten();
 			
 			if(endFlag)
 			{
@@ -81,7 +83,8 @@ public class Runner extends PApplet
 			}
 		}
 		
-		b.setSpeed(random(-15, 16), random(-15, 16));
+		int speed = (int)(random(-15, 16));
+		b.setSpeed(speed, speed);
 	}
 	
 	public void drawStage0()
@@ -106,12 +109,16 @@ public class Runner extends PApplet
 	
 	public void drawStage1()
 	{
-		for(int x = 0; x < width; x += 90)
+		while(index <= 199)
 		{
-			for(int y = 0; y < height; y += 90)
+			for(int x = 0; x < 1799; x += 90)
 			{
-				//Square(x, y, false);
-				
+				for(int y = 0; y < 899; y += 90)
+				{
+					squares[index] = new Square(this, x, y, false);
+					squares[index].drawSquare();
+					index++;
+				}
 			}
 		}
 		
@@ -137,22 +144,27 @@ public class Runner extends PApplet
 	
 	public void drawStage2()
 	{
-		if(stage1Flag)
-		{
-			background(50);
-			stage1Flag = false;
-		}
+//		if(stage1Flag)
+//		{
+//			background(50);
+//			stage1Flag = false;
+//		}
 		
-		stroke(255);
+//		stroke(255);
+//		
+//		for(int i = 90; i < width; i += 90)
+//		{
+//			line(i, 0, i, height);
+//		}
+//		
+//		for(int i = 90; i < height; i += 90)
+//		{
+//			line(0, i, width, i);
+//		}
 		
-		for(int i = 90; i < width; i += 90)
+		for(int i = 0; i <= 200; i++)
 		{
-			line(i, 0, i, height);
-		}
-		
-		for(int i = 90; i < height; i += 90)
-		{
-			line(0, i, width, i);
+			squares[i].drawSquare();
 		}
 		
 		b.drawBall();
