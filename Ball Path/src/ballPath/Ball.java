@@ -55,21 +55,24 @@ public class Ball
 	{
 		parent.fill(50, 200, 0);
 		parent.ellipse((float)posX, (float)posY, 50, 50);
+		moveBall();
 	}
 	
 	public void addMove(int move)
 	{
-		
 		instructions.add(move);
 	}
 	
 	public int getDiffMove()
 	{
 		int move = (int)parent.random(0, 4);
+		
 		if(instructions.size() < 1)
 			return move;
+		
 		while(move == instructions.get(instructions.size() - 1))
 			move = (int)parent.random(0, 4);
+		
 		return move;
 	}
 	

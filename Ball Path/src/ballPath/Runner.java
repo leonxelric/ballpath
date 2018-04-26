@@ -57,7 +57,7 @@ public class Runner extends PApplet
 	
 	public int getIndexInSquares()
 	{
-		return (((int) mouseY/90) * 20) + mouseX/90;
+		return ((mouseY/90)*20) + mouseX/90;
 	}
 	
 	public void mousePressed()
@@ -77,14 +77,22 @@ public class Runner extends PApplet
 			
 			if(endFlag)
 			{
+				squares[getIndexInSquares()].makeEnd();
 				stage = 2;
-				fill(50);
-				rect(0, 0, 89, 89);
 			}
 		}
 		
-		int speed = (int)(random(-15, 16));
-		b.setSpeed(speed, speed);
+		int xnegChange = (int) random(0, 2);
+		int ynegChange = (int) random(0, 2);
+		
+		if(xnegChange == 0)
+			xnegChange = -1;
+		
+		if(ynegChange == 0)
+			ynegChange = -1;
+		
+		int speed = (int)(random(-10, 11));
+		b.setSpeed(speed*xnegChange, speed*ynegChange);
 	}
 	
 	public void drawStage0()
@@ -111,15 +119,20 @@ public class Runner extends PApplet
 	{
 		while(index <= 199)
 		{
-			for(int x = 0; x < 1799; x += 90)
+			for(int y = 0; y < 899; y += 90)
 			{
-				for(int y = 0; y < 899; y += 90)
+				for(int x = 0; x < 1799; x += 90)
 				{
 					squares[index] = new Square(this, x, y, false);
 					squares[index].drawSquare();
 					index++;
 				}
 			}
+		}
+		
+		for(int i = 0; i < 200; i++)
+		{
+			squares[i].drawSquare();
 		}
 		
 //		if(stage1Flag)
@@ -162,13 +175,12 @@ public class Runner extends PApplet
 //			line(0, i, width, i);
 //		}
 		
-		for(int i = 0; i <= 200; i++)
+		for(int i = 0; i < 200; i++)
 		{
 			squares[i].drawSquare();
 		}
 		
 		b.drawBall();
-		b.moveBall();
 		
 		if(get((int)b.getX() + 27, (int)b.getY()) == -13487566 || get((int)b.getX() - 27, (int)b.getY()) == -13487566)
 			b.setSpeed(b.sX() * -1, b.sY());
